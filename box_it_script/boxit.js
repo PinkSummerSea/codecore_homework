@@ -1,4 +1,6 @@
 #! /home/nimbus-user/.nvm/versions/node/v17.6.0/bin/node
+//Added shbang line in the fisrt line 
+//in order to run the script without typing 'node'
 
 function drawLine(n) {
     return '\u2501'.repeat(n)
@@ -41,8 +43,15 @@ function boxIt(arr) {
     return result
 }
 
-//let arrForArgv = process.argv.slice(2);
-//console.log(boxIt(arrForArgv));
+//Piecing It All Together. 
+//Turn your file into a script allowing anyone to use it from the command line as follows:
+//$ node boxit.js 'Jon Snow' 'Cersei Lannister' 'Daenerys Targaryen'
+
+let arrForArgv = process.argv.slice(2);
+console.log(boxIt(arrForArgv));
+
+//Add support to read CSV files and output the results
+//when called as follows: `./boxit.js characters.csv`
 
 const fs = require('fs');
 const csv = require('fast-csv');
@@ -60,4 +69,3 @@ fs.createReadStream('./characters.csv')
         }
         console.log(boxIt(arrForCsv));
     });
-
