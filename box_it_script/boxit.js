@@ -1,4 +1,5 @@
-//my homework
+#! /home/nimbus-user/.nvm/versions/node/v17.6.0/bin/node
+
 function drawLine(n) {
     return '\u2501'.repeat(n)
 }
@@ -22,6 +23,8 @@ function drawBarsAround(str, extraSpaceAmount) {
 function boxIt(arr) {
     let maxLen = 0;
     let result = '';
+    if (arr.length === 0) return drawTopBorder(0) + '\n' + '\n' + drawBottomBorder(0);
+    if (arr.length === 1) return drawTopBorder(arr[0].length) + '\n' + drawBarsAround(arr[0], 0) + '\n' + drawBottomBorder(arr[0].length);
     for (let str of arr) {
         if (str.length > maxLen) maxLen = str.length
     }
@@ -38,4 +41,23 @@ function boxIt(arr) {
     return result
 }
 
-console.log(boxIt(['Jon Snow', 'Cersei Lannister']))
+//let arrForArgv = process.argv.slice(2);
+//console.log(boxIt(arrForArgv));
+
+const fs = require('fs');
+const csv = require('fast-csv');
+const data = [];
+
+fs.createReadStream('./characters.csv')
+    .pipe(csv.parse({headers: false}))
+    .on('error', error => console.error(error))
+    .on('data', row => data.push(row))
+    .on('end', () => {
+        const arrForCsv = [];
+        for (let subArr of data) {
+            let newStr = subArr.join(' \u2503 ');
+            arrForCsv.push(newStr);
+        }
+        console.log(boxIt(arrForCsv));
+    });
+
