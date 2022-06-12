@@ -140,7 +140,3 @@ console.log(mira.print());
 const flash = new Turtle(0, 0).forward(3).left().forward(3);
 console.log(flash.allPoints());
 console.log(flash.print());
-
-const julie = new Turtle(2,5).forward(2).right().forward(4).left().forward(3);
-console.log(julie.allPoints());
-console.log(julie.print());
