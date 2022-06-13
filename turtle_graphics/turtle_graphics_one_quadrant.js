@@ -75,7 +75,7 @@ class Turtle {
             if (point[1] > maxY) maxY = point[1];
             if (point[0] > maxX) maxX = point[0];
         };
-        
+
         for (let point of this.points) {
             if (point[1] < minY) minY = point[1];
             if (point[0] < minX) minX = point[0];
@@ -97,14 +97,14 @@ class Turtle {
         for (let line of landArr) {
             resultStr = resultStr + line.join(' ') + '\n';
         }
-        return resultStr;
+        return console.log(resultStr);
     }
 
 }
 
 const jakie = new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5);
 console.log(jakie.allPoints());
-console.log(jakie.print());
+jakie.print();
 
 const mira = new Turtle(0, 4);
 mira.forward(3)
@@ -121,8 +121,28 @@ mira.forward(3)
     .left()
     .forward(3);
 console.log(mira.allPoints());
-console.log(mira.print());
+mira.print();
 
 const flash = new Turtle(0, 4).forward(3).left().forward(3);
 console.log(flash.allPoints());
-console.log(flash.print());
+flash.print();
+
+const command = process.argv[2];
+const commandArr = command.split('-');
+let newTurtle = new Turtle(0, 0);
+for (let singleCommand of commandArr) {
+    if (singleCommand[0] == 't') {
+        newTurtle = new Turtle(parseInt(singleCommand[1]),parseInt(singleCommand[3]))
+    }
+    if (singleCommand[0] == 'f') {
+        newTurtle.forward(parseInt(singleCommand.slice(1)))
+    }
+    if (singleCommand[0] == 'r') {
+        newTurtle.right()
+    }
+    if (singleCommand[0] == 'l') {
+        newTurtle.left()
+    }
+}
+
+newTurtle.print();
