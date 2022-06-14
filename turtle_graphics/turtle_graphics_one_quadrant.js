@@ -1,3 +1,6 @@
+// Please refer to this one-quadrant solution as my home work. 
+// I'd appreciate it if you could take a look at the four-quadrants solution and give some advice as well. But feel free to only review and mark this one-quadrant solution. Thank you!
+
 class Turtle {
     constructor(x = 0, y = 0) {
         this.x = x;

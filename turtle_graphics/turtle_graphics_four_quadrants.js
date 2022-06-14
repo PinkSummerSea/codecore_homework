@@ -1,3 +1,5 @@
+// This was my initial attempt where I tried to solve the problem in a four quadrants x and y axis graph. The program can draw the same thing as the one-quadrant solution does. But the points coordinates are diffrent. It's more like a regular 4-quadrant x-y axis graph, which is different from the one in the assignment's instructions. You can ignore this js file if you do not have enough time. I just want to keep this version for my own reference in the future. Please see the turtle_graphics_one_quadrant.js as my homework solution. Thank you very much!
+
 class Turtle {
     constructor(x = 0, y = 0) {
         this.x = x;
@@ -118,22 +120,22 @@ const henry = new Turtle(0,0).forward(2).left().forward(2).right().forward(2).ri
 console.log(henry.allPoints());
 henry.print();
 
-// const mira = new Turtle(0, 4);
-// mira.forward(3)
-//     .left()
-//     .forward(3)
-//     .right()
-//     .forward(5)
-//     .right()
-//     .forward(8)
-//     .right()
-//     .forward(5)
-//     .right()
-//     .forward(3)
-//     .left()
-//     .forward(3);
-// console.log(mira.allPoints());
-// mira.print();
+const mira = new Turtle(0, 4);
+mira.forward(3)
+    .left()
+    .forward(3)
+    .right()
+    .forward(5)
+    .right()
+    .forward(8)
+    .right()
+    .forward(5)
+    .right()
+    .forward(3)
+    .left()
+    .forward(3);
+console.log(mira.allPoints());
+mira.print();
 
 const flash = new Turtle(0, 4).forward(3).left().forward(3);
 console.log(flash.allPoints());
