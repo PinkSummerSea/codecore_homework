@@ -127,6 +127,8 @@ const flash = new Turtle(0, 4).forward(3).left().forward(3);
 console.log(flash.allPoints());
 flash.print();
 
+// The code below made the program usable as a script.
+
 const command = process.argv[2];
 const commandArr = command.split('-');
 let newTurtle = new Turtle(0, 0);

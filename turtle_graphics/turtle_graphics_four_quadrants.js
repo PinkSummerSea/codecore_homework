@@ -91,7 +91,6 @@ class Turtle {
                     }
                 }
             }
-            //landArr[landArr.length - 1 + minY - this.initialY][this.initialX - minX] = '\u25CF';
         } else {
             for (let i = maxY; i >= minY; i--) {
                 for (let point of this.points) {
@@ -100,25 +99,24 @@ class Turtle {
                     }
                 }
             }
-            //landArr[landArr.length - 1 + minY - this.initialY][this.initialX] = '\u25CF';
         }
 
         let resultStr = '';
         for (let line of landArr) {
             resultStr = resultStr + line.join(' ') + '\n';
         }
-        return resultStr;
+        return console.log(resultStr);
     }
 
 }
 
 const jakie = new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5);
 console.log(jakie.allPoints());
-console.log(jakie.print());
+jakie.print();
 
 const henry = new Turtle(0,0).forward(2).left().forward(2).right().forward(2).right().forward(3).right().forward(10).right().forward(3);
 console.log(henry.allPoints());
-console.log(henry.print());
+henry.print();
 
 // const mira = new Turtle(0, 4);
 // mira.forward(3)
@@ -135,8 +133,8 @@ console.log(henry.print());
 //     .left()
 //     .forward(3);
 // console.log(mira.allPoints());
-// console.log(mira.print());
+// mira.print();
 
 const flash = new Turtle(0, 4).forward(3).left().forward(3);
 console.log(flash.allPoints());
-console.log(flash.print());
+flash.print();
