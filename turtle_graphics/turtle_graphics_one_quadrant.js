@@ -1,5 +1,6 @@
 // Please refer to this one-quadrant solution as my home work. 
 // I'd appreciate it if you could take a look at the four-quadrants solution and give some advice as well. But feel free to only review and mark this one-quadrant solution. Thank you!
+const fs = require('fs');
 
 class Turtle {
     constructor(x = 0, y = 0) {
@@ -100,7 +101,8 @@ class Turtle {
         for (let line of landArr) {
             resultStr = resultStr + line.join(' ') + '\n';
         }
-        return console.log(resultStr);
+        console.log(resultStr);
+        return resultStr;
     }
 
 }
@@ -132,22 +134,41 @@ flash.print();
 
 // The code below made the program usable as a script.
 
-const command = process.argv[2];
-const commandArr = command.split('-');
-let newTurtle = new Turtle(0, 0);
-for (let singleCommand of commandArr) {
-    if (singleCommand[0] == 't') {
-        newTurtle = new Turtle(parseInt(singleCommand[1]),parseInt(singleCommand[3]))
+
+function createTurtleWithArgv(command){
+    const commandArr = command.split('-');
+    let newTurtle = new Turtle(0, 0);
+    for (let singleCommand of commandArr) {
+        if (singleCommand[0] == 't') {
+            newTurtle = new Turtle(parseInt(singleCommand[1]),parseInt(singleCommand[3]))
+        }
+        if (singleCommand[0] == 'f') {
+            newTurtle.forward(parseInt(singleCommand.slice(1)))
+        }
+        if (singleCommand[0] == 'r') {
+            newTurtle.right()
+        }
+        if (singleCommand[0] == 'l') {
+            newTurtle.left()
+        }
     }
-    if (singleCommand[0] == 'f') {
-        newTurtle.forward(parseInt(singleCommand.slice(1)))
-    }
-    if (singleCommand[0] == 'r') {
-        newTurtle.right()
-    }
-    if (singleCommand[0] == 'l') {
-        newTurtle.left()
-    }
+    return newTurtle.print()
 }
 
-newTurtle.print();
+if(process.argv[2].startsWith('t') || process.argv[2].startsWith('f')) {
+    createTurtleWithArgv(process.argv[2])
+};
+
+
+
+// The code below will write the turtle drawing to a file.
+if (process.argv[2].startsWith('--output=')) {
+    const fileToWrite = process.argv[2].slice(9);
+    fs.writeFile(fileToWrite, createTurtleWithArgv(process.argv[3]), (err) => {
+        if (err) {
+            console.log('Error', err)
+        } else {
+            console.log(`🐢 Drawing written to ${fileToWrite}`)
+        }
+    })
+}
