@@ -1,4 +1,5 @@
 const readline = require('readline');
+const fs = require('fs');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -74,3 +75,20 @@ rl.on("line", (line) => {
         rl.close();
     }  
 })
+
+//Add support to load a todo list from a JSON file as an argument
+
+if(process.argv[2]) {
+    const jsonFile = process.argv[2];
+    fs.readFile(jsonFile, 'utf8', (err, data) => {
+        if (err) {
+            console.log('Failed.')
+        } else {
+            let start = 0;
+            JSON.parse(data).map((item) => {
+                toDoListArr.push(`${start} ${item.completed == true? '[✓]' : '[]'} ${item.title}`);
+                start++;
+            })
+        }
+    })
+}
