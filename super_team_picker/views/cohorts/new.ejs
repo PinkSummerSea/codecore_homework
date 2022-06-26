@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+</head>
+
+<body>
+    <form action="/cohorts" method="post">
+        <div>
+            <label for="logo_url">Logo Url</label>
+            <br>
+            <input type="text" id="logo_url" name="logo_url" placeholder="e.g. https://www.example.com/some.png">
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <br>
+            <input type="text" id="name" name="name" placeholder="Flying Funks">
+        </div>
+        <div>
+            <label for="members_str">Members</label>
+            <br>
+            <textarea name="members_str" id="members_str" cols="30" rows="5"
+                placeholder="Jon Snow, Daenerys, Melisandre, Arya Stark"></textarea>
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+
+</html>
