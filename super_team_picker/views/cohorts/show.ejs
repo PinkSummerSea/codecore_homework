@@ -25,21 +25,19 @@
             <button>Assign Teams</button>
         </form>
     </div>
-        <%if (method && quantity && method == 'teamCount') {%>
+    <div>
+        <%if (method && quantity) {%>
             <h3># Members</h3>
-            <%let leftMembers = [...cohort.members_arr];%>
-            
-            <%let randomIndex = Math.floor(leftMembers.length * Math.random());%>
-            <%let finalArr = [];%>
-            <%for (let i = 1; i <= parseInt(quantity); i++) {%>
-                <%let team = [];%>
-                <%for (let j = 1; j <= Math.min(secondNum, leftMembers.length); j++) {%>
-                    <% team.push(leftMembers[randomIndex]) %>
-                    <% leftMembers = leftMembers.filter(element => {element != leftMembers[randomIndex]}) %> 
-                <%}%>
-                <% finalArr.push(team) %> 
+            <%for (let singleTeam of finalArr) {%>
+                <p><%- singleTeam%></p>
             <%}%>
-            <h4><%- finalArr %> </h4>
         <%}%>
+    </div>
+    <form action="/cohorts/<%- cohort.id %>/edit">
+        <button>Edit This Cohort</button>
+    </form>
+    <form action="/cohorts/<%- cohort.id %>?_method=DELETE" method="post">
+        <button>Delete This Cohort</button>
+    </form>
 </body>
 </html>

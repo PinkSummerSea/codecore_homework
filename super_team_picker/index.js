@@ -47,14 +47,6 @@ app.post('/cohorts', (req, res) => {
 })
 
 app.get('/cohorts/:id', (req, res) => {
-    // // let method = false;
-    // // let quantity = false;
-    let secondNum = 1;
-    // if (req.query && req.query.method && req.query.quantity) {
-    //     let method = req.query.method;
-    //     let quantity = req.query.quantaty;
-    // };
-    
 
     knex('cohorts')
     .where('id', req.params.id)
@@ -63,12 +55,57 @@ app.get('/cohorts/:id', (req, res) => {
         if(!cohort) {
             res.send('No cohort found')
         } else {
-            if(req.query && req.query.method && req.query.quantity) {secondNum = Math.ceil(cohort.members_arr.length / req.query.quantity)}; 
+            let finalArr = [];
+
+            function shuffleArr(arr) {
+                let newArr = [...arr];
+                for (let i = 0; i < newArr.length; i++) {
+                    let j = Math.floor(Math.random() * (newArr.length));
+                    [newArr[j], newArr[i]] = [newArr[i], newArr[j]]
+                }
+                return newArr
+            };
+
+            let shuffledMembers = shuffleArr(cohort.members_arr);
+            let secondNum = Math.floor(cohort.members_arr.length / Number(req.query.quantity));
+            let remainder = cohort.members_arr.length % Number(req.query.quantity);
+            const originalRemainder = remainder;
+            if(req.query && req.query.method && req.query.quantity) {
+                if (req.query.method == 'teamCount') {
+                    for (let i = 0; i < Number(req.query.quantity); i++) {
+                        let singleTeam = [];
+                        if (remainder) {
+                            singleTeam = shuffledMembers.slice(i + secondNum * i, i + secondNum * i + secondNum + 1);
+                            remainder--;
+                            finalArr.push(singleTeam);
+                        } else {
+                            singleTeam = shuffledMembers.slice(originalRemainder + secondNum * i, originalRemainder + secondNum * i + secondNum);
+                            finalArr.push(singleTeam);
+                        }
+                    }
+                    console.log(finalArr);
+                } else {
+                    //if method == 'perTeam'
+                    if (remainder > 0) {
+                        let t = shuffledMembers.slice(0, remainder);
+                        finalArr.push(t)
+                    };
+                    for (let i = 0; i < secondNum; i++) {
+                        let singleTeam = [];
+                        singleTeam = shuffledMembers.slice(remainder + Number(req.query.quantity) * i, remainder + Number(req.query.quantity) * i + Number(req.query.quantity));
+                        //console.log(singleTeam);
+                        finalArr.push(singleTeam);
+                    }
+                    console.log(finalArr)
+                }
+            }
+
             res.render('cohorts/show', { 
                 cohort: cohort,
                 method: req.query.method,
                 quantity: req.query.quantity,
-                secondNum: secondNum
+                secondNum: secondNum,
+                finalArr: finalArr
              })
         }
     })
@@ -79,6 +116,42 @@ app.get('/cohorts', (req, res) => {
     .then(cohorts => {
         //console.log(cohorts);
         res.render('cohorts/index', { cohorts: cohorts })
+    })
+})
+
+app.get('/cohorts/:id/edit', (req, res) => {
+    knex('cohorts')
+    .where('id', req.params.id)
+    .first()
+    .then(cohort => {
+        res.render('cohorts/edit', {
+            cohort: cohort
+        })
+    })
+})
+
+app.patch('/cohorts/:id', (req, res) => {
+    knex('cohorts')
+    .where('id', req.params.id)
+    .update({
+        name: req.body.name,
+        logo_url: req.body.logo_url,
+        members_arr: req.body.members_str.split(',')
+    })
+    .then(() => {
+        res.redirect('/cohorts')
+    })
+})
+
+
+
+app.delete('/cohorts/:id', (req, res) => {
+    const { id } = req.params;
+    knex('cohorts')
+    .where('id', id)
+    .del()
+    .then(() => {
+        res.redirect('/cohorts')
     })
 })
 

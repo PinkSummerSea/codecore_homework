@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form action="/cohorts/<%- cohort.id %>?_method=PATCH" method="post">
+        <div>
+            <label for="logo_url">Logo Url</label>
+            <br>
+            <input type="text" id="logo_url" name="logo_url" value="<%- cohort.logo_url %>">
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <br>
+            <input type="text" id="name" name="name" value="<%- cohort.name %>">
+        </div>
+        <div>
+            <label for="members_str">Members</label>
+            <br>
+            <textarea name="members_str" id="members_str" cols="30" rows="5"><%- cohort.members_arr %></textarea>
+            <!-- why we do not need to transfer array to string? -->
+        </div>
+        <button>Save</button>
+    </form>
+</body>
+</html>
