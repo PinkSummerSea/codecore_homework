@@ -14,6 +14,7 @@ cohorts table
 */
 
 //build a navbar
+//http://localhost:8000/cohorts
 
 const express = require('express');
 const path = require('path');
@@ -24,9 +25,15 @@ const app = express();
 
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+
+
+app.get('/', (req, res)=> {
+    res.render('home')
+})
 
 app.get('/cohorts/new', (req, res) => {
     res.render('cohorts/new')
@@ -113,6 +120,7 @@ app.get('/cohorts/:id', (req, res) => {
 
 app.get('/cohorts', (req, res) => {
     knex('cohorts')
+    .orderBy('createdAt', 'DESC')
     .then(cohorts => {
         //console.log(cohorts);
         res.render('cohorts/index', { cohorts: cohorts })

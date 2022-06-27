@@ -4,27 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Edit</title>
 </head>
 <body>
+    <%- include('../partials/navbar') %> 
     <form action="/cohorts/<%- cohort.id %>?_method=PATCH" method="post">
-        <div>
-            <label for="logo_url">Logo Url</label>
+        <div class="mb-3">
+            <label for="logo_url" class="form-label">Logo Url</label>
             <br>
-            <input type="text" id="logo_url" name="logo_url" value="<%- cohort.logo_url %>">
+            <input type="text" id="logo_url" name="logo_url" value="<%- cohort.logo_url %>" class="form-control">
         </div>
-        <div>
-            <label for="name">Name</label>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
             <br>
-            <input type="text" id="name" name="name" value="<%- cohort.name %>">
+            <input type="text" id="name" name="name" value="<%- cohort.name %>" class="form-control">
         </div>
-        <div>
-            <label for="members_str">Members</label>
+        <div class="mb-3">
+            <label for="members_str" class="form-label">Members</label>
             <br>
-            <textarea name="members_str" id="members_str" cols="30" rows="5"><%- cohort.members_arr %></textarea>
+            <textarea name="members_str" id="members_str" cols="30" rows="5" class="form-control"><%- cohort.members_arr %></textarea>
             <!-- why we do not need to transfer array to string? -->
         </div>
-        <button>Save</button>
+        <div class="right-button-container">
+        <button class="btn btn-outline-primary">Save</button>
+        </div>
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
