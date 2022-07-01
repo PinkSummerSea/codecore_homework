@@ -1,21 +1,3 @@
-/*
-cohorts table
-[{
-    id:(increments)
-    name:(string)
-    logo_url:(string)
-    members: ['Lily', 'David', 'Kevin'](array)
-}, {
-
-}, {
-
-}]
-
-*/
-
-//build a navbar
-//http://localhost:8000/cohorts
-
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
@@ -90,7 +72,7 @@ app.get('/cohorts/:id', (req, res) => {
                             finalArr.push(singleTeam);
                         }
                     }
-                    console.log(finalArr);
+                    //console.log(finalArr);
                 } else {
                     //if method == 'perTeam'
                     if (remainder > 0) {
@@ -103,7 +85,7 @@ app.get('/cohorts/:id', (req, res) => {
                         //console.log(singleTeam);
                         finalArr.push(singleTeam);
                     }
-                    console.log(finalArr)
+                    //console.log(finalArr)
                 }
             }
 
@@ -164,6 +146,6 @@ app.delete('/cohorts/:id', (req, res) => {
 })
 
 
-app.listen(8000, () => {
-    console.log('ON PORT 8000!')
+app.listen(8080, () => {
+    console.log('ON PORT 8080!')
 })
