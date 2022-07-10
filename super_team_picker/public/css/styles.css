@@ -1,0 +1,65 @@
+body {
+    margin:0 3em;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    color: royalblue;
+}
+
+.navbar-brand {
+    color: royalblue;
+}
+
+#home-link {
+    color: royalblue;
+}
+
+.thumbnail {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    display:inline-block;
+    vertical-align:middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    flex-shrink: 0;
+    max-height: 120%
+}
+
+.card-title {
+    font-size: larger;
+}
+
+.right-button-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.home-page-container {
+    font-family: 'Concert One', cursive;
+    margin: 3em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fake-logo {
+    width: 35em;
+    height: auto;
+}
+
+.home-headline {
+    font-size: 3em;
+    color: rgb(95, 47, 15);
+}

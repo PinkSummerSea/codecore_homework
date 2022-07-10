@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>New</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %> 
+    <form action="/cohorts" method="post">
+        <div class="mb-3">
+            <label class="form-label" for="logo_url">Logo Url</label>
+            <br>
+            <input class="form-control" type="text" id="logo_url" name="logo_url" placeholder="e.g. https://www.example.com/some.png">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <br>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Flying Funks">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="members_str">Members</label>
+            <br>
+            <textarea class="form-control" name="members_str" id="members_str" cols="30" rows="5"
+                placeholder="Jon Snow, Daenerys, Melisandre, Arya Stark"></textarea>
+        </div>
+        <div class="right-button-container">
+        <button class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
+</html>

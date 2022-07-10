@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Show</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <div class="show-page-container">
+            <div class="card mb-3" style="width: 60%;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%- cohort.name %>
+                    </h5>
+                    <p class="card-text">
+                        <%- cohort.members_arr.join(', ') %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <form action="/cohorts/<%- cohort.id %>" method="get">
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="team_count" name="method"
+                                        value="teamCount">
+                                    <label class="form-check-label" for="team_count">Team Count</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="number_per_team" name="method"
+                                        value="perTeam">
+                                    <label class="form-check-label" for="number_per_team">Number Per Team</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="quantity">Quantity</label>
+                                <input class="form-control" type="text" id="quantity" name="quantity">
+                            </div>
+                            <button class="btn btn-outline-primary mb-3" style="width: 100%;">Assign Teams</button>
+                        </form>
+                    </li>
+                    <%if (method && quantity) {%>
+                        <li class="list-group-item">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Members</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                <%for (let singleTeam of finalArr) {%>
+                                  <tr>
+                                    <th scope="row"><%- finalArr.indexOf(singleTeam) + 1%></th>
+                                    <td><%- singleTeam.join(', ') %></td>
+                                  </tr>
+                                <%}%>
+                                </tbody>
+                              </table>
+                        </li>
+                        <%}%>
+                            <div class="card-body">
+                                <form action="/cohorts/<%- cohort.id %>/edit">
+                                    <button class="btn btn-primary mb-3">Edit This Cohort</button>
+                                </form>
+                                <form action="/cohorts/<%- cohort.id %>?_method=DELETE" method="post">
+                                    <button class="btn btn-danger">Delete This Cohort</button>
+                                </form>
+                            </div>
+            </div>
+        </div>
+        </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
