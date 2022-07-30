@@ -1,0 +1,47 @@
+.main-container {
+    margin: auto;
+    width: 50%;
+}
+
+.headline {
+    text-align: center;
+}
+
+.hangman-img {
+    display: block;
+    margin: auto;
+}
+
+.letters-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 12em;
+    
+}
+
+.single-letter {
+    border: 2px solid black;
+    border-radius: 10%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+.answer-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.answer-letter {
+    width: 2em;
+    height: 5em;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 2em;
+}
