@@ -1,10 +1,19 @@
+body {
+    font-family: 'Rampart One', cursive;
+}
+
 .main-container {
-    margin: auto;
+    margin: 2em auto;
     width: 50%;
+    border: 2px solid black;
+    padding: 0 5em;
+    border-radius: 5%;
+    box-shadow: 12px 12px 2px 2px rgba(255, 0, 162, 0.2);
 }
 
 .headline {
     text-align: center;
+    font-size: 3.5em;
 }
 
 .hangman-img {
@@ -29,6 +38,7 @@
     justify-content: center;
     align-items: center;
     font-size: 2em;
+    box-shadow: 6px 6px 1px 1px rgba(255, 0, 162, 0.2);
 }
 
 .answer-container {
@@ -37,13 +47,13 @@
 }
 
 .answer-letter {
-    width: 2em;
-    height: 3em;
+    width: 1em;
+    height: 1.5em;
     border-bottom: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 .notice {

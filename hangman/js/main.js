@@ -58,12 +58,16 @@ function eventHandler(event, clickedLetter){
                 document.querySelector(`.answer-container :nth-child(${index + 1})`).innerText = clickedLetter
             })
             if(leftLength == 0) {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        alert("Congratulations! You win!");
-                        location.reload()
-                    });
-                });
+                const audio = new Audio('sound/crowd-cheering.wav');
+                setTimeout(function(){audio.play(), alert("Congratulations! You win!"), location.reload()}, 200)
+                // tried the approach below but doesn't work after adding sound
+                
+                // requestAnimationFrame(() => {  
+                //     requestAnimationFrame(() => {
+                //         alert("Congratulations! You win!");
+                //         location.reload()
+                //     });
+                // });
             }
         } else {
             switch(guess) {
@@ -84,7 +88,8 @@ function eventHandler(event, clickedLetter){
                     break;
                 case 6:
                     hangmanImg.setAttribute('src', 'images/gallows+head+torso+2leg+2arm.jpg')
-                    setTimeout(function(){alert("Better luck next time..."), location.reload()}, 200)  
+                    const audio = new Audio('sound/kid-sobbing.wav')
+                    setTimeout(function(){audio.play(), alert("Better luck next time..."), location.reload()}, 200)  
                     break;
                 default:
                     break;
@@ -93,7 +98,7 @@ function eventHandler(event, clickedLetter){
         } 
     } else {
         document.querySelector('.notice').innerText = "You can only click or type each letter once!"
-        setTimeout(function(){document.querySelector('.notice').innerText = ""}, 3000)
+        setTimeout(function(){document.querySelector('.notice').innerText = ""}, 4000)
     }
 }
 
