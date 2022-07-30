@@ -38,10 +38,15 @@
 
 .answer-letter {
     width: 2em;
-    height: 5em;
+    height: 3em;
     border-bottom: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     font-size: 2em;
+}
+
+.notice {
+    text-align: center;
+    font-size: 1.5em;
 }

@@ -29,22 +29,41 @@ function findAllIndices(element, arr) {
 
 let guess = 1;
 let leftLength = answer.length;
+let clickedLetters = [];
 
-singleLetters.forEach(letter => {
-    letter.addEventListener('click', event => {
-        event.target.style.backgroundColor = 'hotpink';
-        event.target.style.borderColor = 'hotpink';
-        event.target.style.color = 'white';
-        const indices = findAllIndices(event.target.id.slice(-1), answer);
+
+function eventHandler(event, clickedLetter){
+    if(clickedLetters.indexOf(clickedLetter) == -1){
+        clickedLetters.push(clickedLetter);
+        if(event.target.tagName=='DIV') {
+            event.target.style.backgroundColor = 'hotpink';
+            event.target.style.borderColor = 'hotpink';
+            event.target.style.color = 'white';
+        }
+        if(event.target.tagName=='BODY'){
+            singleLetters.forEach(singleLetter => {
+                if(singleLetter.id == `letter-${clickedLetter}`){
+                    singleLetter.style.backgroundColor = 'hotpink';
+                    singleLetter.style.borderColor = 'hotpink';
+                    singleLetter.style.color = 'white';
+                }
+            })
+        }
+        
+        const indices = findAllIndices(clickedLetter, answer);
         
         if(indices.length > 0){
             leftLength -= indices.length;
             indices.forEach(index => {
-                document.querySelector(`.answer-container :nth-child(${index + 1})`).innerText = event.target.id.slice(-1)
+                document.querySelector(`.answer-container :nth-child(${index + 1})`).innerText = clickedLetter
             })
             if(leftLength == 0) {
-                setTimeout(function(){alert("Congratulations! You win!"),location.reload()}, 100) 
-                
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        alert("Congratulations! You win!");
+                        location.reload()
+                    });
+                });
             }
         } else {
             switch(guess) {
@@ -65,15 +84,27 @@ singleLetters.forEach(letter => {
                     break;
                 case 6:
                     hangmanImg.setAttribute('src', 'images/gallows+head+torso+2leg+2arm.jpg')
-                    setTimeout(function(){alert("Better luck next time..."), location.reload()}, 100) 
-                    
+                    setTimeout(function(){alert("Better luck next time..."), location.reload()}, 200)  
                     break;
                 default:
                     break;
             }
             guess++
         } 
+    } else {
+        document.querySelector('.notice').innerText = "You can only click or type each letter once!"
+        setTimeout(function(){document.querySelector('.notice').innerText = ""}, 3000)
+    }
+}
 
-        
+singleLetters.forEach(letter => {
+    letter.addEventListener('click', event => {
+        const clickedLetter = event.target.id.slice(-1);
+        eventHandler(event, clickedLetter)
     })
+})
+
+document.addEventListener('keyup', event => {
+    const clickedLetter = event.key;
+    eventHandler(event, clickedLetter)
 })
