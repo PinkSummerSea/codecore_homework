@@ -1,9 +1,21 @@
+const wordsCollection = ['princess', 'apple', 'witch', 'prince', 'queen', 'king', 'forest', 'sword', 'dwarf', 'snow', 'white', 'castle', 'crown', 'marriage', 'battle']
 
-const answer = "princess"
+const randomWord = wordsCollection[Math.floor(Math.random() * wordsCollection.length)]
+
+const answer = randomWord
+
+console.log(answer)
 
 const lettersContainer = document.querySelector('.letters-container')
 const singleLetters = lettersContainer.querySelectorAll('.single-letter')
 const hangmanImg =  document.querySelector('.hangman-img')
+const answerContainer = document.querySelector('.answer-container')
+const answerChar = document.createElement('div');
+answerChar.setAttribute('class', 'answer-letter')
+
+for (let i = 1; i <= answer.length; i++) {
+    answerContainer.innerHTML += answerChar.outerHTML
+}
 
 function findAllIndices(element, arr) {
     const indices = [];
@@ -31,7 +43,8 @@ singleLetters.forEach(letter => {
                 document.querySelector(`.answer-container :nth-child(${index + 1})`).innerText = event.target.id.slice(-1)
             })
             if(leftLength == 0) {
-                setTimeout(function(){alert("Congratulations! You win!")}, 100) 
+                setTimeout(function(){alert("Congratulations! You win!"),location.reload()}, 100) 
+                
             }
         } else {
             switch(guess) {
@@ -52,7 +65,8 @@ singleLetters.forEach(letter => {
                     break;
                 case 6:
                     hangmanImg.setAttribute('src', 'images/gallows+head+torso+2leg+2arm.jpg')
-                    setTimeout(function(){alert("Better luck next time...")}, 100) 
+                    setTimeout(function(){alert("Better luck next time..."), location.reload()}, 100) 
+                    
                     break;
                 default:
                     break;
