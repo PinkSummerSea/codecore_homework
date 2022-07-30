@@ -2,7 +2,7 @@ const wordsCollection = ['princess', 'apple', 'witch', 'prince', 'queen', 'king'
 
 const randomWord = wordsCollection[Math.floor(Math.random() * wordsCollection.length)]
 
-const answer = randomWord
+const answer = randomWord.toLowerCase();
 
 console.log(answer)
 
@@ -61,7 +61,7 @@ function eventHandler(event, clickedLetter){
                 const audio = new Audio('sound/crowd-cheering.wav');
                 setTimeout(function(){audio.play(), alert("Congratulations! You win!"), location.reload()}, 200)
                 // tried the approach below but doesn't work after adding sound
-                
+
                 // requestAnimationFrame(() => {  
                 //     requestAnimationFrame(() => {
                 //         alert("Congratulations! You win!");
@@ -110,6 +110,6 @@ singleLetters.forEach(letter => {
 })
 
 document.addEventListener('keyup', event => {
-    const clickedLetter = event.key;
+    const clickedLetter = event.key.toLowerCase();
     eventHandler(event, clickedLetter)
 })
