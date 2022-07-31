@@ -4,7 +4,7 @@ const randomWord = wordsCollection[Math.floor(Math.random() * wordsCollection.le
 
 const answer = randomWord.toLowerCase();
 
-console.log(answer)
+//console.log(answer)
 
 const lettersContainer = document.querySelector('.letters-container')
 const singleLetters = lettersContainer.querySelectorAll('.single-letter')
